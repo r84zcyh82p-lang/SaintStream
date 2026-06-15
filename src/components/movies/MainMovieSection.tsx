@@ -23,7 +23,7 @@ function CustomTabPanel(props: TabPanelProps) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === index && <Box sx={{ p: 0 }}>{children}</Box>}
     </div>
   );
 }
@@ -38,31 +38,80 @@ function a11yProps(index: number) {
 export default function MainMovieSection() {
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
   return (
     <div className={`mt-10`}>
-      <Box className={`${styles.container}`} sx={{ width: '100%' }}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-            <Tab className="text-white" label="Item One" {...a11yProps(0)} />
-            <Tab className="text-white" label="Item Two" {...a11yProps(1)} />
-            <Tab className="text-white" label="Item Three" {...a11yProps(2)} />
+      <Box className={`${styles.container}`}>
+        <Box>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="basic tabs example"
+            sx={{ '& .MuiTabs-indicator': { backgroundColor: '#00925D' } }}
+          >
+            <Tab sx={{
+              color: 'rgba(255, 255, 255, 0.65)',
+              transition: 'all 0.5s',
+              '&:hover': {
+                color: '#ffffff',
+                opacity: 1,
+              },
+              '&.Mui-selected': {
+                color: '#ffffff',
+              },
+              border: 'white'
+            }} label="Episode" {...a11yProps(0)} />
+            <Tab sx={{
+              color: 'rgba(255, 255, 255, 0.65)',
+              transition: 'all 0.5s',
+              '&:hover': {
+                color: '#ffffff',
+                opacity: 1,
+              },
+              '&.Mui-selected': {
+                color: '#ffffff',
+              },
+            }} label="Universe" {...a11yProps(1)} />
+            <Tab sx={{
+              color: 'rgba(255, 255, 255, 0.65)',
+              transition: 'all 0.5s',
+              '&:hover': {
+                color: '#ffffff',
+                opacity: 1,
+              },
+              '&.Mui-selected': {
+                color: '#ffffff',
+              },
+            }} label="News" {...a11yProps(2)} />
+            <Tab sx={{
+              color: 'rgba(255, 255, 255, 0.65)',
+              transition: 'all 0.5s',
+              '&:hover': {
+                color: '#ffffff',
+                opacity: 1,
+              },
+              '&.Mui-selected': {
+                color: '#ffffff',
+              },
+            }} label="Reviews" {...a11yProps(3)} />
           </Tabs>
         </Box>
         <CustomTabPanel value={value} index={0}>
-          Item One
+          <SerialSection />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
-          Item Two
+          Universe
         </CustomTabPanel>
         <CustomTabPanel value={value} index={2}>
-          Item Three
+          News
+        </CustomTabPanel>
+        <CustomTabPanel value={value} index={3}>
+          Reviews
         </CustomTabPanel>
       </Box>
-      <SerialSection />
       <div className="w-full h-px bg-[rgba(255,255,255,0.1)]"></div>
       <MovieSection />
       <div className="w-full h-px bg-[rgba(255,255,255,0.1)]"></div>

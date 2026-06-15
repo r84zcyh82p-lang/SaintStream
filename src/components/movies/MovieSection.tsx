@@ -13,7 +13,7 @@ export default function MovieSection() {
         <h3 className="font-bold text-[24px] leading-8 tracking-[.5%] text-[#F9F9F9] mb-6">Similar Movies for you</h3>
 
       </div>
-      <div className="relative -mx-8 px-8 overflow-visible">
+      <div className="relative overflow-visible">
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper w-full" slidesPerView="auto" spaceBetween={24}>
           <SwiperSlide style={{ width: "auto" }}>
             <div className="flex gap-6 items-center">
@@ -37,7 +37,6 @@ export default function MovieSection() {
           <div className="absolute right-0 bottom-0 z-10 w-41.75 h-64 top_cast_shadow_bg"></div>
         </Swiper>
       </div>
-      {/* <div className="absolute right-0 bottom-0 z-10 w-[167px] h-[48px] top_cast_shadow_bg"></div> */}
     </div>
   )
 }

@@ -27,23 +27,37 @@ export default function SerialSection() {
           <FormControl>
             <Select
               displayEmpty
-              className="border bg-[#111827] border-[#28262D] rounded-lg w-27.75 h-7.5"
+              className="rounded-lg w-27.75 h-7.5"
               sx={{
                 color: '#FFFFFF',
-                '.MuiOutlinedInput-notchedOutline': { borderColor: '#28262D' },
-                '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: '#28262D' },
-                '.MuiSelect-select': { display: 'flex', alignItems: 'center', height: '30px', padding: '0 12px' },
-                '.MuiSvgIcon-root': { color: '#FFFFFF' }
+                width: '111px',
+                height: '30px',
+                borderRadius: '8px',
+                backgroundColor: '#0D0C0F',
+                border: '1px solid #28262D',
+                '&:hover': { borderColor: '#28262D' },
+                '.MuiSelect-select': {
+                  display: 'flex',
+                  alignItems: 'center',
+                  height: '30px',
+                  padding: '0 12px',
+                  fontWeight: 700,
+                  fontSize: '14px',
+                  lineHeight: '22px',
+                  letterSpacing: '0.5%'
+                },
+                '.MuiSvgIcon-root': { color: '#fff' },
+                '&.Mui-focused': { borderColor: '#28262D' }
               }}
               id="demo-simple-select"
               value={season}
               onChange={handleChange}
-              MenuProps={{ PaperProps: { sx: { bgcolor: '#111827', color: '#FFFFFF' } } } as any}
+              MenuProps={{ PaperProps: { sx: { bgcolor: '#0D0C0F', color: 'black' } } } as any}
               renderValue={(selected) => selected || 'Season 1'}
             >
-              <MenuItem value={1} sx={{ color: '#0D0C0F' }}>Season 1</MenuItem>
-              <MenuItem value={2} sx={{ color: '#0D0C0F' }}>Season 2</MenuItem>
-              <MenuItem value={3} sx={{ color: '#0D0C0F' }}>Season 3</MenuItem>
+              <MenuItem value={"Season 1"} sx={{ color: 'black', '&.Mui-selected': { color: 'black' } }}>Season 1</MenuItem>
+              <MenuItem value={"Season 2"} sx={{ color: 'black', '&.Mui-selected': { color: 'black' } }}>Season 2</MenuItem>
+              <MenuItem value={"Season 3"} sx={{ color: 'black', '&.Mui-selected': { color: 'black' } }}>Season 3</MenuItem>
             </Select>
           </FormControl>
         </Box>
@@ -53,13 +67,14 @@ export default function SerialSection() {
           <SwiperSlide style={{ width: "auto" }}>
             <div className="flex gap-4 items-center">
               {
-                episodes.map((item) => (
-                  <div key={item.id} className="shrink-0 flex flex-col gap-y-3 items-center cursor-pointer relative overflow-hidden rounded-2xl w-75.25 h-49.25">
+                episodes.map((item, index) => (
+                  <div key={index} className="shrink-0 flex flex-col gap-y-3 items-center cursor-pointer relative overflow-hidden rounded-2xl w-75.25 h-49.25">
                     <img src={item.img} alt={item.title} className="rounded-2xl w-full h-full object-cover" />
                     <div className="flex flex-col items-center absolute bottom-0 left-0 py-2 px-5 w-full" style={{ background: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 78.02%)" }}>
                       <h3 className="text-[#F9F9F9] font-bold w-full text-[16px] tracking-[0.5%] leading-6">{item.title}</h3>
                       <p className="text-[#78828A] tracking-[0.5%] ml-1 text-[12px] leading-5">{item.description}</p>
-                      <div className="w-full flex items-center justify-center">
+                      <div className="w-full flex items-center justify-between">
+                        <h5 className="text-[#D1D8DD] font-medium text-[12px] leading-5 tracking-[0.5%] whitespace-nowrap">{item.duration}</h5>
                         <Box sx={{ width: 139 }}>
                           <Slider
                             color="success"
@@ -69,6 +84,7 @@ export default function SerialSection() {
                             valueLabelDisplay="auto"
                           />
                         </Box>
+                        <h5 className="text-[#D1D8DD] font-medium text-[12px] leading-5 tracking-[0.5%] whitespace-nowrap">{item.duration}</h5>
                       </div>
                     </div>
                     <div className="">
